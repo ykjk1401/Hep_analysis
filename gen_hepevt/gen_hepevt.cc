@@ -122,13 +122,12 @@ void gen_hepevt::event(BelleEvent* evptr, int* status) {
 			double c = 1;
 			mbc = sqrt ( pow((benergy/pow(c,2)),2) - pow((p_p/c),2) );
 			deltae = energy-benergy;
-			std::cout<<p<<std::endl;
-			std::cout<<p_p<<std::endl;
 			nt->column("mbc" , mbc);
 			nt->column("deltae" , deltae);
 			nt->column("b0mass" , gen.P(4));
 			nt->dumpData();
 		}
+		
 	}
   
 	
