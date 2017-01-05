@@ -45,19 +45,19 @@ double MCUtils::Reconquality (std::vector<Particle> particle_list, std::string p
 {
 	double reconquality;
 	int not_genhep=0;
-	int genhep=0;
+	int gen_hep=0;
 	int well_reconed_num=0;
 	std::vector<Particle> __particle_list = particle_list;
-	std::string __pname = pname;
-	int pid = Ptype(__pname).idhep();
+	char *__pname = *pname;
+	int pid = Ptype(__pname).lund();
 	if(!particle_list.empty())
 	{
 		for(std::vector<Particle>::iterator i = __particle_list.begin(); i!=__particle_list.end(); i++)
 		{
 			Particle &p=*i;
-			if(p.genhep())
+			if(p.genHepevt())
 			{
-				if(p.genhep().idhep()==pid)
+				if(p.genHepevt().idhep()==pid)
 				{
 					well_reconed_num++;
 				}
@@ -72,9 +72,9 @@ double MCUtils::Reconquality (std::vector<Particle> particle_list, std::string p
 			}
 		}
 	}
-	reconquality = well_reconed_num/(well_reconed_num+gen_hep_not_genhep);
+	reconquality = well_reconed_num/(well_reconed_num+gen_hep+not_genhep);
 	std::cout<<"***********************************"<<std::endl;
-	std::cout<<"Recon quality check for : "<<__pname<<std::endl
+	std::cout<<"Recon quality check for : "<<__pname<<std::endl;
 	std::cout<<"well reconed : "<<well_reconed_num<<std::endl;
 	std::cout<<"reconed but wrong id : "<<gen_hep<<std::endl;
 	std::cout<<"Not even gen_hep : " <<not_genhep<<std::endl;

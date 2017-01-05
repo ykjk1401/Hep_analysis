@@ -63,6 +63,7 @@ namespace Belle {
 				if( (atcKPI>KPI_cut)&&(atcKP>KP_cut))
 				{
 					Particle Kaon (chg, Ptype (chg.charge()>0?"K+":"K-"));
+					getHepevt(chg)?Kaon.relation().genHepevt(getHepevt(chg)):;
 					kaon_list.push_back(Kaon);
 				}
 			}
